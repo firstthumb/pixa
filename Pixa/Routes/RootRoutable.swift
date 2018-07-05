@@ -16,13 +16,17 @@ class RootRoutable: Routable {
     }
     
     func setToSplashViewController() -> Routable {
-        self.window.rootViewController = R.storyboard.splash.instantiateInitialViewController()
+        self.window.rootViewController = SplashViewController(nib: R.nib.splashViewController)
+        
+//        self.window.rootViewController = R.storyboard.splash.instantiateInitialViewController()
         
         return SplashViewRoutable()
     }
     
     func setToSearchViewController() -> Routable {
-        self.window.rootViewController = R.storyboard.search.instantiateInitialViewController()
+        self.window.rootViewController = SearchViewController(nib: R.nib.searchViewController)
+        
+//        self.window.rootViewController = R.storyboard.search.instantiateInitialViewController()
         
         return SearchViewRoutable(window.rootViewController!)
     }

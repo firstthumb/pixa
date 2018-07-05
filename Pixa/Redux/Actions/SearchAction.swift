@@ -10,6 +10,7 @@ import ReSwift
 import Moya
 import Result
 import ObjectMapper
+import ReSwiftRouter
 
 extension SearchState {
     public static func searchImages(query: String) -> SearchImages {
@@ -22,6 +23,7 @@ extension SearchState {
                             let images = Mapper<Image>().mapArray(JSONArray: statuses)
                             print("Images : \(images)")
                             store.dispatch(SearchImagesAction(query: query))
+                            store.dispatch(ReSwiftRouter.SetRouteAction([RouteNames.search]))
                         }
                     } catch {
                         store.dispatch(SearchImagesAction(query: "nil"))

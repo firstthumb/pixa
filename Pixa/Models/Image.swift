@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Image: Mappable, Codable {
+class Image: Mappable, Codable, CustomStringConvertible {
     var id: Int!
     
     required init?(map: Map) {
@@ -18,5 +18,11 @@ class Image: Mappable, Codable {
     
     func mapping(map: Map) {
         id <- map["id"]
+    }
+    
+    var description: String {
+        var description = ""
+        description += "ID : \(self.id!)"
+        return description
     }
 }

@@ -8,15 +8,32 @@
 
 import UIKit
 import CoreData
+import ReSwift
+import ReSwiftRouter
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
+    var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        window?.rootViewController = UIViewController()
+        
+        let rootRoutable = RootRoutable(window: window!)
+        
+        router = Router(store: store, rootRoutable: rootRoutable) {
+            $0.select {
+                $0.navigationState
+            }
+        }
+        
+        IQKeyboardManager.shared.enable = true
+        
+        store.dispatch(ReSwiftRouter.SetRouteAction([RouteNames.splash]))
+        
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
